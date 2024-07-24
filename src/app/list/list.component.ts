@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Room, Booking, BookingserviceService } from '../bookingservice.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { animation } from '@angular/animations';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -37,6 +39,12 @@ export class ListComponent implements OnInit {
       console.log("register",this.bookingForm.value)
       this.bookingService.addBooking(this.bookingForm.value);
       this.bookings = this.bookingService.getBookings();
+      Swal.fire({
+        icon: 'success',
+        title: 'Booking successful!',
+        text: 'Your room has been booked successfully.',
+        confirmButtonText: 'OK'
+      });
       this.bookingForm.reset();
      
     }
